@@ -1,4 +1,8 @@
 require_relative('../db/sql_runner')
+require_relative('./film')
+require_relative('./ticket')
+
+
 
 class Customer
 
@@ -49,6 +53,14 @@ class Customer
       film_array = SqlRunner.run(sql, values)
       result = film_array.map { |film| Film.new( film ) }
       return result
-
     end
+
+#decrease funds when ticket bought
+    def buy_ticket(ticket)
+      if @funds >= ticket.price
+        @funds -= ticket.price
+      else
+        return "not enough funds"
+      end
+  end
 end

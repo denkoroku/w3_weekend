@@ -37,8 +37,8 @@ class Ticket
     sql = "SELECT * FROM films WHERE films.id = $1"
     values = [@film_id]
     film_array = SqlRunner.run(sql, values)
-    result= film_array.map{ |film| Film.new(film[0])}
-    return film
+    result= film_array.map{ |film| Film.new(film)}
+    return result
   end
 
   def customer
@@ -46,7 +46,7 @@ class Ticket
     values = [@customer_id]
     customer_array = SqlRunner.run(sql, values)
     result = customer_array.map{ |customer|Customer.new(customer[0])  }
-    return customer
+    return result
   end
 
 end
